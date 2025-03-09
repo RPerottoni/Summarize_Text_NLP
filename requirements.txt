@@ -2,5 +2,3 @@ spacy==3.8.4
 spacy-legacy==3.0.12
 spacy-loggers==1.0.5
 streamlit==1.43.1
-en_core_web_lg==3.8.0
-pt_core_news_lg==3.8.0

@@ -15,6 +15,26 @@ st.set_page_config(
     layout="wide"
 )
 
+import spacy
+from spacy.cli import download
+
+#  Download spacy models
+def install_spacy_models():
+    try:
+        spacy.load("en_core_web_sm")
+    except:
+        print("Modelo en_core_web_sm não encontrado, instalando...")
+        download("en_core_web_sm")
+        
+    try:
+        spacy.load("pt_core_news_sm")
+    except:
+        print("Modelo pt_core_news_sm não encontrado, instalando...")
+        download("pt_core_news_sm")
+
+# Install spacy models
+install_spacy_models()
+
 # Load spaCy model once at module level (not inside function)
 nlp_eng = spacy.load('en_core_web_lg', disable=['ner'])
 nlp_eng.add_pipe('sentencizer')

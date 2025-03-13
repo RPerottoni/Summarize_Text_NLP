@@ -1,130 +1,65 @@
-# Text Summarization with NLP
+# Summarize Text with NLP
 
-This project provides a simple web-based interface for summarizing text using Natural Language Processing (NLP) techniques. The application supports both **English** and **Portuguese** text and generates a summary by selecting key sentences based on keyword frequency.
+## Overview
+This project is a web application that summarizes text using Natural Language Processing (NLP). It supports English and Portuguese and allows users to extract key sentences from a given text based on keyword frequency. The application is built using `spaCy` for NLP processing and `Streamlit` for the user interface.
 
-Built using **spaCy** for text processing and **Streamlit** for the web interface, this tool extracts the most relevant sentences from input text to create a concise summary.
+## Features
+- Supports text summarization in **English** and **Portuguese**.
+- Uses `spaCy` for sentence parsing and keyword extraction.
+- Provides an interactive web interface built with `Streamlit`.
+- Allows users to select the number of sentences to include in the summary.
+- Supports **downloading** the generated summary as a `.txt` file.
 
----
-
-## Table of Contents
-
-1. [Installation](#installation)
-2. [Usage](#usage)
-3. [Code Explanation](#code-explanation)
-4. [Contributing](#contributing)
-5. [License](#license)
-
----
+## Technologies Used
+- **Python** (Main programming language)
+- **spaCy** (Natural Language Processing)
+- **Streamlit** (Web framework for interactive UI)
+- **Counter & defaultdict** (For keyword frequency analysis)
 
 ## Installation
+To run this project locally, follow these steps:
 
-1. Clone this repository:
-
-    ```bash
-    git clone https://github.com/RPerottoni/Summarize_Text_NLP.git
-    ```
-
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/RPerottoni/Summarize_Text_NLP.git
+   ```
 2. Navigate to the project directory:
-
-    ```bash
-    cd Summarize_Text_NLP
-    ```
-
-3. Install the required dependencies:
-
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-4. Download the required spaCy models for English and Portuguese:
-
-    ```bash
-    python -m spacy download en_core_web_lg
-    python -m spacy download pt_core_news_lg
-    ```
-
-5. Run the Streamlit app:
-
-    ```bash
-    streamlit run app.py
-    ```
-
-The app will open in your browser, where you can enter text and generate summaries.
-
----
+   ```sh
+   cd Summarize_Text_NLP
+   ```
+3. Create a virtual environment (optional but recommended):
+   ```sh
+   python -m venv venv
+   source venv/bin/activate  # On macOS/Linux
+   venv\Scripts\activate  # On Windows
+   ```
+4. Install dependencies:
+   ```sh
+   pip install -r requirements.txt
+   ```
+5. Run the application:
+   ```sh
+   streamlit run app.py
+   ```
 
 ## Usage
+1. Open the app in your browser.
+2. Enter the text you want to summarize.
+3. Choose the language (**English** or **Portuguese**).
+4. Select the number of sentences to include in the summary.
+5. Click the **Summarize** button to generate the summary.
+6. Download the summarized text as a `.txt` file if needed.
 
-1. **Select Language**: Choose either **English** or **Portuguese** from the sidebar.
-2. **Input Text**: Type or paste the text you want to summarize in the text box.
-3. **Adjust Sentence Count**: Use the slider in the sidebar to select the number of sentences for the summary.
-4. **Generate Summary**: Click the "Summarize" button to get the summary of the input text. The summary will be displayed below the input area.
+## Results
+Check out the deployed application at:
+🔗 **[Live Demo](YOUR_APP_LINK_HERE)**
 
----
-
-## Code Explanation
-
-### Key Functions
-
-#### `en_summarize_text`
-
-This function summarizes English text by extracting key sentences based on keyword frequency.
-
-**Arguments**:
-- `original_text` (str): The text to be summarized.
-- `n_sentences` (int): The number of sentences to include in the summary.
-- `spacy_model` (Optional[spacy.Language]): An optional pre-loaded spaCy model (default: English model).
-
-**Returns**: A string containing the summary of the text.
-
-**Raises**: `ValueError` if `n_sentences` is not a positive integer.
-
-#### `pt_summarize_text`
-
-This function summarizes Portuguese text in a similar way as `en_summarize_text` but using a Portuguese spaCy model.
-
-**Arguments**:
-- `original_text` (str): The text to be summarized.
-- `n_sentences` (int): The number of sentences to include in the summary.
-- `spacy_model` (Optional[spacy.Language]): An optional pre-loaded spaCy model (default: Portuguese model).
-
-**Returns**: A string containing the summary of the text.
-
-**Raises**: `ValueError` if `n_sentences` is not a positive integer.
-
-#### `main`
-
-This is the main entry point of the Streamlit app. It:
-- Displays the UI for user input.
-- Accepts text input from the user.
-- Provides options for language selection and number of sentences in the summary.
-- Displays the generated summary after processing the input text.
-
----
-
-## Contributing
-
-Contributions are welcome! If you'd like to contribute to the project, feel free to submit a pull request with improvements or new features.
-
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature-name`)
-3. Commit your changes (`git commit -am 'Add feature'`)
-4. Push to the branch (`git push origin feature-name`)
-5. Create a new pull request
-
----
+## Future Improvements
+- **Integration with News APIs**: Automatically summarize news articles from external sources.
+- **AI-based Abstractive Summarization**: Implement deep learning models for better summarization.
+- **Multi-language Support**: Extend support for additional languages.
+- **Keyword Highlighting**: Show important keywords in the output summary.
 
 ## License
+This project is open-source and available under the [MIT License](LICENSE).
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## Acknowledgements
-
-- **spaCy**: Used for text processing and NLP tasks.
-- **Streamlit**: Used for building the web application.
-
----
-
-For more details or updates, visit the project on [Github](https://github.com/RPerottoni/Summarize_Text_NLP).

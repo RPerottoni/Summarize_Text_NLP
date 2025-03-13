@@ -52,7 +52,7 @@ To run this project locally, follow these steps:
 
 ## Results
 Check out the deployed application at:
-🔗 **[Live Demo](YOUR_APP_LINK_HERE)**
+🔗 **[Live Demo](https://rp-summarize-text-nlp.streamlit.app)**
 
 ## Future Improvements
 - **Integration with News APIs**: Automatically summarize news articles from external sources.

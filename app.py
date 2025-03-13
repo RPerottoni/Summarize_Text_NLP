@@ -19,8 +19,8 @@ st.set_page_config(
 nlp_eng = spacy.load('en_core_web_lg', disable=['ner'])
 nlp_eng.add_pipe('sentencizer')
 
-nlp_pt = spacy.load('pt_core_news_lg', disable=['ner'])
-nlp_pt.add_pipe('sentencizer')
+#nlp_pt = spacy.load('pt_core_news_lg', disable=['ner'])
+#nlp_pt.add_pipe('sentencizer')
 
 def en_summarize_text(
     original_text: str,

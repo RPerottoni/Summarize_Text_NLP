@@ -181,8 +181,8 @@ def pt_summarize_text(
 
 
 def main():
-    st.title('Summarize texts with NLP :robot_face:')
-    st.subheader("Pick a language, enter your text and choose a series of sentences that you consider important for your summary!")
+    st.header('Summarize texts with NLP :robot_face:')
+    st.subheader("Pick a language, choose a series of sentences and enter the text you want summarize!")
 
     st.write('')
 
@@ -213,10 +213,12 @@ def main():
                 st.header("This is the summary of your text.")
                 summary = en_summarize_text(st.session_state.user_input, n_sentences)
                 st.write(summary)
+                st.download_button("Download your text", summary, file_name="summary.txt", mime="text/plain")
             elif menu == "Portuguese":
                 st.header("Confira o resumo do seu texto abaixo:")
                 summary = pt_summarize_text(st.session_state.user_input, n_sentences)
                 st.write(summary)
+                st.download_button("Download your text", summary, file_name="summary.txt", mime="text/plain")
         else:
             st.warning("Please enter some text before summarizing!")  # Warning if empty
 
@@ -224,6 +226,3 @@ if __name__ == '__main__':
     main()
     # Hide default Streamlit elements
     st.markdown("""<style> #MainMenu, footer, header {visibility: hidden;} </style>""", unsafe_allow_html=True)
-
-
-st.sidebar.info('Check out the project on [Github](https://github.com/RPerottoni/Summarize_Text_NLP)')

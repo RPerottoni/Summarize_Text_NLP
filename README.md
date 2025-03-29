@@ -1,10 +1,10 @@
 # Summarize Text with NLP
 
 ## Overview
-This project is a web application that summarizes text using Natural Language Processing (NLP). It supports English and Portuguese and allows users to extract key sentences from a given text based on keyword frequency. The application is built using `spaCy` for NLP processing and `Streamlit` for the user interface.
+This project is a web application that summarizes text using Natural Language Processing (NLP). It allows users to extract key sentences from a given text based on keyword frequency. The application is built using `spaCy` for NLP processing and `Streamlit` for the user interface.
 
 ## Features
-- Supports text summarization in **English** and **Portuguese**.
+- Supports text summarization in **English**.
 - Uses `spaCy` for sentence parsing and keyword extraction.
 - Provides an interactive web interface built with `Streamlit`.
 - Allows users to select the number of sentences to include in the summary.
@@ -45,10 +45,9 @@ To run this project locally, follow these steps:
 ## Usage
 1. Open the app in your browser.
 2. Enter the text you want to summarize.
-3. Choose the language (**English** or **Portuguese**).
-4. Select the number of sentences to include in the summary.
-5. Click the **Summarize** button to generate the summary.
-6. Download the summarized text as a `.txt` file if needed.
+3. Select the number of sentences to include in the summary.
+4. Click the **Summarize** button to generate the summary.
+5. Download the summarized text as a `.txt` file if needed.
 
 ## Results
 Check out the deployed application at:

@@ -19,9 +19,6 @@ st.set_page_config(
 nlp_eng = spacy.load('en_core_web_lg', disable=['ner'])
 nlp_eng.add_pipe('sentencizer')
 
-#nlp_pt = spacy.load('pt_core_news_lg', disable=['ner'])
-#nlp_pt.add_pipe('sentencizer')
-
 def en_summarize_text(
     original_text: str,
     n_sentences: int,
@@ -100,89 +97,10 @@ def en_summarize_text(
     return ' '.join(
         sent.text for sent in sorted(ranked, key=lambda x: top_sentences[x])
     )
-def pt_summarize_text(
-    original_text: str,
-    n_sentences: int,
-    spacy_model: Optional[spacy.Language] = None
-) -> str:
-    """
-    Generates a text summary from portuguese text, by extracting key sentences based on keyword frequency.
-
-    Args:
-        original_text: Input text to be summarized
-        n_sentences: Number of sentences to include in the summary
-        spacy_model: Optional pre-loaded spaCy model (default: English model)
-
-    Returns:
-        str: Generated summary concatenated from top sentences
-
-    Raises:
-        ValueError: If n_sentences is not a positive integer
-    """
-    # Input validation
-    if n_sentences <= 0:
-        raise ValueError("n_sentences must be a positive integer")
-
-    # Use provided model or default
-    model = spacy_model or nlp_pt
-    
-    # Text preprocessing
-    cleaned_text = ' '.join(original_text.strip().split())
-    doc = model(cleaned_text)
-    
-    # Configuration
-    stopwords = set(pt_sw)
-    pos_tags = {'PROPN', 'ADJ', 'NOUN', 'VERB'}
-    keywords = []
-    sentence_scores = defaultdict(float)  # Use float for normalized scores
-
-    # Keyword extraction with combined checks
-    for token in doc:
-        text_lower = token.text.lower()
-        if (
-            token.pos_ in pos_tags and
-            text_lower not in stopwords and
-            token.text not in punctuation
-        ):
-            keywords.append(text_lower)
-
-    # Handle empty keyword case
-    if not keywords:
-        return ""
-    
-    # Normalize frequencies
-    keyword_freq = Counter(keywords)
-    max_freq = keyword_freq.most_common(1)[0][1]
-    normalized_freq = {k: (v/max_freq) for k, v in keyword_freq.items()}
-
-    # Score sentences
-    for sent in doc.sents:
-        score = sum(
-            normalized_freq.get(token.text.lower(), 0)
-            for token in sent
-            if token.text.lower() in normalized_freq
-        )
-        sentence_scores[sent] = score
-
-    # Preserve original order while selecting top sentences
-    top_sentences = {
-        sent: idx for idx, sent in enumerate(doc.sents)
-        if sent in sentence_scores
-    }
-    ranked = sorted(
-        sentence_scores.keys(),
-        key=lambda x: (-sentence_scores[x], top_sentences[x])
-    )[:n_sentences]
-
-    # Join sentences in original order
-    return ' '.join(
-        sent.text for sent in sorted(ranked, key=lambda x: top_sentences[x])
-    )
-
 
 def main():
     st.header('Summarize texts with NLP :robot_face:')
-    st.subheader("Pick a language, choose a series of sentences and enter the text you want summarize!")
+    st.subheader("Choose a series of sentences and enter the text you want summarize!")
 
     st.write('')
 
@@ -199,7 +117,7 @@ def main():
     st.session_state.user_input = user_input  # Update session state
 
     # Sidebar
-    language = ["Portuguese", "English"]
+    language = ["English"]
 
     with st.sidebar:
         st.image("reports/figures/summarize.jpg")
